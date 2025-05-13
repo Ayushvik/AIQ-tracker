@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 3000;
 
 // CORS Configuration
 const corsOptions = {
-    origin: 'https://127.0.0.1:5500', // Allow requests from the frontend's origin
+    origin: 'http://127.0.0.1:5500', // Allow requests from the frontend's origin
     methods: ['GET', 'POST'], // Allow only necessary methods
     allowedHeaders: ['Content-Type'] // Allow only necessary headers
 };
@@ -47,7 +47,7 @@ app.use('/api', userRoutes);
 
 // Start the server
 const server = app.listen(PORT, () => {
-    console.log(`Server is running on https://localhost:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 // Graceful shutdown
