@@ -1,5 +1,5 @@
-
-const API_KEY = "3e0609e4a08345d564f57f77ce99c132" // <-- Replace with your actual API key
+require('dotenv').config();
+// const API_KEY = "3e0609e4a08345d564f57f77ce99c132" // <-- Replace with your actual API key
 
 async function getAQI() {
     const city = document.getElementById("cityInput").value;
@@ -9,7 +9,7 @@ async function getAQI() {
     }
 
     try {
-        const geoResponse = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`);
+        const geoResponse = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${process.env.API_KEY}`);
         const geoData = await geoResponse.json();
         
         if (geoData.length === 0) {
@@ -18,7 +18,7 @@ async function getAQI() {
         }
 
         const { lat, lon } = geoData[0];
-        const aqiResponse = await fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`);
+        const aqiResponse = await fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}`);
         const aqiData = await aqiResponse.json();
         displayAQI(aqiData, city);
         
