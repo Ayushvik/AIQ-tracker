@@ -4,8 +4,7 @@ const dotenv = require('dotenv');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
- const userRoutes = require('./src/routes/userRoutes');
-
+const userRoutes = require('./src/routes/userRoutes');
 
 // Load environment variables from a custom path
 const envPath = path.resolve(__dirname, '.env');
@@ -22,7 +21,7 @@ const PORT = process.env.PORT || 3000;
 
 // CORS Configuration
 const corsOptions = {
-    origin: 'http://127.0.0.1:5500', // Allow requests from the frontend's origin
+    origin: process.env.NODE_ENV === 'production' ? '*' : 'http://127.0.0.1:5500', // Allow any origin in production (for Vercel) or specific in dev
     methods: ['GET', 'POST'], // Allow only necessary methods
     allowedHeaders: ['Content-Type'] // Allow only necessary headers
 };
