@@ -9,7 +9,7 @@ async function getAQI() {
     }
 
     try {
-        const geoResponse = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API}`);
+        const geoResponse = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API}`);
         const geoData = await geoResponse.json();
         
         if (geoData.length === 0) {
@@ -18,7 +18,7 @@ async function getAQI() {
         }
 
         const { lat, lon } = geoData[0];
-        const aqiResponse = await fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API}`);
+        const aqiResponse = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API}`);
         const aqiData = await aqiResponse.json();
         displayAQI(aqiData, city);
         
@@ -123,7 +123,7 @@ async function submitDetails() {
     };
 
     try {
-        const response = await fetch('http://localhost:3000/api/user', {
+        const response = await fetch('https://localhost:3000/api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
